@@ -1,5 +1,7 @@
 # TonicNet
 
+Accompanying repository for my paper: [Improving Polyphonic Music Models with Feature-Rich Encoding](https://drive.google.com/open?id=1pO0cPKF0Csht-kbarXToskP0ge9Ho_9u)
+
 <b>Requirements:</b>
 - Python 3 (tested with 3.6.5)
 - Pytorch (tested with 1.2.0)
