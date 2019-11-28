@@ -19,7 +19,7 @@ First run --gen_dataset, then:
 python main.py --train
 ```
 
-Training requires 60 epochs, taking roughly 6-10 hours on GPU
+Training requires 60 epochs, taking roughly 3-6 hours on GPU
 
 <b>Evaluate Pre-trained Model on Test Set:</b>
 
