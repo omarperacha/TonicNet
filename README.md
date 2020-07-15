@@ -1,5 +1,8 @@
 # TonicNet
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/improving-polyphonic-music-models-with/music-modeling-on-jsb-chorales)](https://paperswithcode.com/sota/music-modeling-on-jsb-chorales?p=improving-polyphonic-music-models-with)
+
+
 Accompanying repository for my paper: [Improving Polyphonic Music Models with Feature-Rich Encoding](https://arxiv.org/abs/1911.11775)
 
 <b>Requirements:</b>
