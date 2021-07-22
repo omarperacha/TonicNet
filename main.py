@@ -32,15 +32,24 @@ if len(sys.argv) > 1:
             CrossEntropyTimeDistributedLoss(), set='test', notes_only=True)
 
     elif sys.argv[1] in ['--gen_dataset', '-gd']:
-        for x, y, p, i, c in bach_chorales_classic('save', transpose=True):
-            continue
+        if len(sys.argv) > 2 and sys.argv[2] == '--jsf':
+            for x, y, p, i, c in bach_chorales_classic('save', transpose=True, jsf_aug='all'):
+                continue
+        elif len(sys.argv) > 2 and sys.argv[2] == '--jsf_only':
+            for x, y, p, i, c in bach_chorales_classic('save', transpose=True, jsf_aug='only'):
+                continue
+        else:
+            for x, y, p, i, c in bach_chorales_classic('save', transpose=True):
+                continue
 
     else:
         print("")
         print("TonicNet (Training on Ordered Notation Including Chords)")
         print("Omar Peracha, 2019")
         print("")
-        print("--gen_dataset\t\t prepare dataset")
+        print("--gen_dataset\t\t\t\t prepare dataset")
+        print("--gen_dataset --jsf \t\t prepare dataset with JS Fakes data augmentation")
+        print("--gen_dataset --jsf_only \t prepare dataset with JS Fake Chorales only")
         print("--train\t\t\t train model from scratch")
         print("--eval_nn\t\t evaluate pretrained model on test set")
         print("--sample\t\t sample from pretrained model")
@@ -51,7 +60,9 @@ else:
     print("TonicNet (Training on Ordered Notation Including Chords)")
     print("Omar Peracha, 2019")
     print("")
-    print("--gen_dataset\t\t prepare dataset")
+    print("--gen_dataset\t\t\t\t prepare dataset")
+    print("--gen_dataset --jsf \t\t prepare dataset with JS Fake Chorales data augmentation")
+    print("--gen_dataset --jsf_only \t prepare dataset with JS Fake Chorales only")
     print("--train\t\t\t train model from scratch")
     print("--eval_nn\t\t evaluate pretrained model on test set")
     print("--sample\t\t sample from pretrained model")

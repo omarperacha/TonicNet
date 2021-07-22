@@ -47,7 +47,7 @@ def eval_on_test_set(load_path, model, criterion, set='test', notes_only=False):
 
             if notes_only:
                 for j in range(y_hat.shape[1]):
-                    if j % 5 is not 4:
+                    if j % 5 != 4:
                         if j == 0:
                             new_y_hat = y_hat[:, j, :].view(1, 1, 98)
                             new_y = Y[:, j].view(1, 1)

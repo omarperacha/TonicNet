@@ -191,7 +191,7 @@ def sample_TonicNet_beam_search(load_path, max_tokens=2999, beam_width=10, alpha
             else:
                 updated[m] = True
                 rejection_reconciliation[m] = m
-                if candidate_seqs[m][-1].item() is not 0:
+                if candidate_seqs[m][-1].item() != 0:
                     scores[m] = prob
                     candidate_seqs[m].append(tensor(y).view(1, 1, 1))
                 else:
@@ -200,7 +200,7 @@ def sample_TonicNet_beam_search(load_path, max_tokens=2999, beam_width=10, alpha
         for b2 in range(beam_width):
             if not updated[b2]:
                 rejection_reconciliation[b2] = temp_store[0][0]
-                if candidate_seqs[b2][-1].item() is not 0:
+                if candidate_seqs[b2][-1].item() != 0:
 
                     scores[b2] = temp_store[0][2]
 

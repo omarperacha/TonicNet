@@ -70,7 +70,14 @@ def get_data_set(mode, shuffle_batches=True, return_I=False):
             yield X, Y, P
 
 
-def bach_chorales_classic(mode, transpose=False, maj_min=False):
+def bach_chorales_classic(mode, transpose=False, maj_min=False, jsf_aug=None):
+
+    if maj_min and jsf_aug is not None:
+        raise ValueError("maj_min and jsf_aug can not both be true")
+
+    if jsf_aug not in ['all', 'only', 'topk-all', 'topk-only', 'topk-skilled-all', 'topk-skilled-only',  None]:
+        raise ValueError("unrecognised value for jsf_aug parameter: can only be 'all', 'only', "
+                         "'topl-all', 'topk-only', 'topk-skilled-all', 'topk-skilled-only' or None")
 
     tokeniser = pickle.load(open('tokenisers/pitch_only.p', 'rb'))
     tokeniser["end"] = 0
@@ -107,13 +114,29 @@ def bach_chorales_classic(mode, transpose=False, maj_min=False):
         crds_majmin = pickle.load(open('dataset_unprocessed/train_majmin_chords.p', 'rb'))
         k_count = 0
 
+        if jsf_aug is not None and phase == 'train':
+            if jsf_aug in ['all', 'only']:
+                jsf_path = 'dataset_unprocessed/js-fakes-16thSeparated.npz'
+            jsf = np.load(jsf_path, allow_pickle=True, encoding="latin1")
+            js_chords = jsf["chords"]
+            jsf = jsf["pitches"]
+
+            if jsf_aug == "all":
+                train = np.concatenate((train, jsf))
+                crds = np.concatenate((crds, js_chords))
+            elif jsf_aug == "only":
+                train = jsf
+                crds = js_chords
+
         for m in train:
             int_m = m.astype(int)
 
-            tonic = ks[k_count][0]
-            scale = ks[k_count][1]
+            if maj_min:
+                tonic = ks[k_count][0]
+                scale = ks[k_count][1]
+                crd_majmin = crds_majmin[k_count]
+
             crd = crds[k_count]
-            crd_majmin = crds_majmin[k_count]
             k_count += 1
 
             if transpose is False or phase == 'valid':
@@ -121,7 +144,7 @@ def bach_chorales_classic(mode, transpose=False, maj_min=False):
                 crds_pieces = [crd]
             else:
                 parts = [int_m[:, 0], int_m[:, 1], int_m[:, 2], int_m[:, 3]]
-                transpositions, tonics, crds_pieces = __np_perform_all_transpositions(parts, tonic, crd)
+                transpositions, tonics, crds_pieces = __np_perform_all_transpositions(parts, 0, crd)
 
                 if maj_min:
 

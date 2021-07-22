@@ -139,7 +139,7 @@ def train_TonicNet(epochs,
             for x, y, psx, i, c in get_data_set(phase, shuffle_batches=shuffle_batches, return_I=1):
                 model.zero_grad()
 
-                if phase == 'train' and (epoch > -1 or load_path is not ''):
+                if phase == 'train' and (epoch > -1 or load_path != ''):
                     if train_emb_freq < 1000:
                         train_emb = ((count % train_emb_freq) == 0)
                     else:
