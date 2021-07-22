@@ -11,13 +11,25 @@ Accompanying repository for my paper: [Improving Polyphonic Music Models with Fe
 - Music21
 
 <b>Prepare Dataset:</b>
+
+To prepare the vanilla JSB Chorales dataset with canonical train/validation/test split:
 ```
 python main.py --gen_dataset
 ```
 
+To prepare dataset augmented with [JS Fake Chorales](https://github.com/omarperacha/js-fakes):
+```
+python main.py --gen_dataset --jsf
+```
+
+To prepare dataset for training on JS Fake Chorales only:
+```
+python main.py --gen_dataset --jsf_only
+```
+
 <b>Train Model from Scratch:</b>
 
-First run --gen_dataset, then:
+First run `--gen_dataset` with any optional 2nd argument, then:
 ```
 python main.py --train
 ```
