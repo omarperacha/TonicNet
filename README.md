@@ -1,5 +1,6 @@
 # TonicNet
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/js-fake-chorales-a-synthetic-dataset-of-1/music-modeling-on-jsb-chorales)](https://paperswithcode.com/sota/music-modeling-on-jsb-chorales?p=js-fake-chorales-a-synthetic-dataset-of-1)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/improving-polyphonic-music-models-with/music-modeling-on-jsb-chorales)](https://paperswithcode.com/sota/music-modeling-on-jsb-chorales?p=improving-polyphonic-music-models-with)
 
 
